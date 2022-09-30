@@ -3636,7 +3636,7 @@ UCHAR   *option_data;
         case 2: /* ACCM, Not implemented.  */
         case 5: /* Magic number - just acknowledge, we do not send out magic number.  */
         case 7: /* The sender can receive protocol compression.  */
-        case 8: /* The sender can receive address compression.  */
+//        case 8: /* The sender can receive address compression.  */
 
             /* Skip these options, since we don't care to object.  */              
             break;
