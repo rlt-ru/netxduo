@@ -5007,6 +5007,27 @@ UCHAR     *byte;
             client_ptr -> nxd_mqtt_ping_not_responded = 1;
         }
     }
+	if (header_value == MQTT_CONTROL_PACKET_TYPE_DISCONNECT) {
+	  ULONG tx_depth;
+	  while (NX_SUCCESS
+		  == nx_tcp_socket_info_get(&client_ptr->nxd_mqtt_client_socket,
+									0,
+									0,
+									0,
+									0,
+									0,
+									0,
+									0,
+									0,
+									&tx_depth,
+									0,
+									0)) {
+		if (!tx_depth) {
+		  break;
+		}
+		tx_thread_sleep(10);
+	  }
+	}
 
     /* Update the timeout value. */
     client_ptr -> nxd_mqtt_timeout = tx_time_get() + client_ptr -> nxd_mqtt_keepalive;
