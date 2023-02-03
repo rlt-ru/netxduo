@@ -5329,7 +5329,7 @@ NX_FTP_SERVER   *server_ptr;
 /*                                            resulting in version 6.1.9  */
 /*                                                                        */
 /**************************************************************************/
-extern void interface_down(uint32_t ip_addr);
+extern void ftp_client_timeout(uint32_t ip_addr);
 
 VOID  _nx_ftp_server_timeout_processing(NX_FTP_SERVER *ftp_server_ptr)
 {
@@ -5399,7 +5399,7 @@ NX_FTP_CLIENT_REQUEST   *client_req_ptr;
                 nx_tcp_server_socket_relisten(ftp_server_ptr -> nx_ftp_server_ip_ptr, NX_FTP_SERVER_CONTROL_PORT,
                                                     &(client_req_ptr -> nx_ftp_client_request_control_socket));
 
-                interface_down(addr);
+                ftp_client_timeout(addr);
             }
         }
     }
